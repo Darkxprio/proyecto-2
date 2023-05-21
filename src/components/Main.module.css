@@ -1,0 +1,12 @@
+.principal {
+    @apply nm-convex-gray-100;
+    height: calc(100vh - theme('height.principal'));
+}
+
+.aside {
+    @apply flex flex-col justify-between text-gray-700 bg-gray-100 shadow w-52 h-full;
+}
+
+.main {
+    @apply w-full h-full overflow-scroll;
+}
