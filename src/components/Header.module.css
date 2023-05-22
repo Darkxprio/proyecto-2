@@ -1,11 +1,7 @@
 .container {
-    @apply h-xxl flex justify-between shadow bg-white text-gray-700;
-}
-
-.button {
-    @apply text-sm font-bold py-1 px-4 bg-gray-100 rounded-full hover:text-red-500;
+    @apply h-16 flex justify-between shadow bg-white text-gray-700;
 }
 
 .h2 {
-    @apply text-xl font-bold flex items-center mr-2;
+    @apply text-2xl font-bold flex items-center mr-4;
 }

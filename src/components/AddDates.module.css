@@ -1,0 +1,40 @@
+.container1 {
+  @apply shadow flex flex-col w-full mt-2 h-56 px-4;
+}
+
+.container2 {
+  @apply shadow flex flex-col w-full my-2 h-28 px-4;
+}
+
+.container3 {
+  @apply shadow flex flex-col w-full my-2 h-40 px-4;
+}
+
+.btncontainer {
+  @apply flex justify-around w-full my-5;
+}
+
+.h4 {
+    @apply mr-3;
+}
+
+.input2 {
+    @apply nm-inset-gray-100 w-full border rounded-xl p-2 focus:outline-none focus:bg-white focus:border-gray-500;
+  }
+
+.input3 {
+    @apply nm-inset-gray-100 w-full border rounded-xl p-2 focus:outline-none focus:bg-white focus:border-gray-500;
+  }
+
+  .time {
+    @apply w-full;
+  }
+  
+
+/* MENOS - NORMAL */
+/* 640PX - SM */
+/* 768PX - MD */
+/* 1024PX - LG | ACÁ PONER */
+/* 1280PX - XL */
+
+/* <div class="bg-blue-500 sm:bg-red-500 md:bg-green-500 lg:bg-yellow-500 xl:bg-purple-500">...</div> */

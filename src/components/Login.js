@@ -22,7 +22,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user === 'admin' && password === 'admin') {
-      navigate('/home');
+      navigate('/');
     } else {
       setShowModal(true);
     }

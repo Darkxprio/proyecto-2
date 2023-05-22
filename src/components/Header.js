@@ -8,9 +8,9 @@ function Header() {
 
   return (
     <div className={styles.container}>
-        <Link to={'/home'} className='flex m-2 items-center'>
-            <img className='h-9' src={SVGLogo} alt='logo' />
-            <img className='h-14' src={SVGTexto} alt='logo' />
+        <Link to={'/'} className='flex m-2 items-center'>
+            <img className='h-12' src={SVGLogo} alt='logo' />
+            <img className='h-20' src={SVGTexto} alt='logo' />
         </Link>
         <h2 className={styles.h2}>Panel de Control</h2>
     </div>
