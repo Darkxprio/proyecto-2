@@ -1,55 +1,111 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from './AddDates.module.css'
+import { Context } from '../services/Memory'
+// import { useNavigate } from 'react-router-dom'
 
 function AddDates() {
-
-
-  
-  const [selectSpeciality, setSelectSpeciality] = useState('')
+  const [selectedOption, setSelectedOption] = useState('nuevo');
   const optionSpeciality = ["", "Odontología", "Podología"]
   const optionProfesional = ["", "Nancy Alarcón", "Ana Cuadros", "Ponchi Merengueti"]
   const optionType = ["", "Consulta", "Operación", "Chequeo"]
 
-  const handleSpeciality = (e) => {
-    setSelectSpeciality(e.target.value)
+  const [form, setForm] = useState({
+    speciality: '',
+    professional: '',
+    atention: '',
+    details: '',
+    date: new Date().toISOString().split('T')[0],
+    name: '',
+    age: '',
+    phone: ''
+  })
+
+  const [state, send] = useContext(Context);
+
+  const NAMES = Object.values(state.dates);
+
+  const onChange = (event, prop) => {
+    setForm(state => ({...state, [prop]: event.target.value}))
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(name, selectSpeciality);
-  }
+  const clean = () => setForm({
+    speciality: '',
+    professional: '',
+    atention: '',
+    details: '',
+    date: new Date().toISOString().split('T')[0],
+    name: '',
+    age: '',
+    phone: ''
+  })
 
   const handleClear = (e) => {
     e.preventDefault();
-    setName('')
-    setAge('')
-    setNumber('')
-    setDate('')
-    setSelectSpeciality('')
+    clean();
   }
 
-  const [name, setName] = useState('')
-  const [age, setAge] = useState('')
-  const [number, setNumber] = useState('')
-  const [date, setDate] = useState('')
-  
+  const scheduleNew = (e) => {
+    send({type: 'scheduleNew', 
+          payload: {
+            name: form.name,
+            age: form.age,
+            phone: form.phone,
+            speciality: form.speciality, 
+            professional: form.professional, 
+            atention: form.atention,
+            details: form.details,
+            date: form.date
+          }})
+    clean();
+    e.preventDefault();
+  }
+
+  const scheduleOld = (e) => {
+    send({type: 'scheduleOld', 
+          payload: {
+            name: nameCatch,
+            phone: phoneCatch,
+            age: ageCatch,
+            speciality: form.speciality, 
+            professional: form.professional, 
+            atention: form.atention,
+            details: form.details,
+            date: form.date
+          }
+          })
+    clean();
+    e.preventDefault();
+  }
+
+  let nameCatch = ''
+  let ageCatch = ''
+  let phoneCatch = ''
+
+  const {speciality, professional, atention, details, date, name, age, phone} = form;
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div className={styles.container1}>
         <div className='flex items-center my-1'>
           <h4 className={styles.h4}>ESPECIALIDAD</h4>
-          <select className={styles.input2} value={selectSpeciality} onChange={handleSpeciality}>
+          <select 
+            className={styles.input} 
+            value={speciality} 
+            onChange={(e) => onChange(e , 'speciality')}>
             {optionSpeciality.map(item => <option key={item}>{item}</option>)}
           </select>
         </div>
         <div className='flex items-center'>
           <h4 className={styles.h4}>PROFESIONAL</h4>
-          <select className={styles.input2}>
+          <select 
+            className={styles.input}
+            value={professional} 
+            onChange={(e) => onChange(e , 'professional')}>
             {optionProfesional.map(item => {
-              if(selectSpeciality === 'Odontología' && item === 'Ana Cuadros'){
+              if(speciality === 'Odontología' && item === 'Ana Cuadros'){
                 return null;
               }
-              if(selectSpeciality === 'Podología' && (item === 'Ana Cuadros' || item === 'Ponchi Merengueti') ){
+              if(speciality === 'Podología' && (item === 'Ana Cuadros' || item === 'Ponchi Merengueti') ){
                 return null;
               }
               return <option key={item}>{item}</option>
@@ -58,49 +114,147 @@ function AddDates() {
         </div>
         <div className='flex items-center my-1'>
           <h4 className={`${styles.h4} pr-6`}>ATENCION</h4>
-          <select className={styles.input2}>
+          <select 
+          className={styles.input}
+          value={atention}
+          onChange={(e) => onChange(e , 'atention')}>
             {optionType.map(item => <option key={item}>{item}</option>)}
           </select>
         </div>
         <div className='flex items-center my-1'>
-          <h4 className={`${styles.h4} pr-8`}>DETALLES</h4>
-          <textarea className={`${styles.input2} resize-none`}></textarea>
+          <h4 
+            className={`${styles.h4} pr-8`}>DETALLES</h4>
+          <textarea 
+            className={`${styles.input} resize-none`}
+            value={details}
+            onChange={(e) => onChange(e , 'details')}>
+            </textarea>
         </div>
       </div>
       <div className={styles.container2}>
         <div className='flex items-center my-1'>
         <h4 className={`${styles.h4} pr-12`}>FECHA</h4>
-          <input className={styles.input2} type='date' value={date} onChange={(e) => setDate(e.target.value)} />
+          <input 
+          className={styles.input} 
+          type='date' 
+          value={date} 
+          onChange={(e) => onChange(e , 'date')}/>
         </div>
         <div className='flex items-center my-1'>
         <h4 className={`${styles.h4} pr-6`}>HORARIO</h4>
           <div>
-            {/* <button className='button button--yellow mr-2'>8:00 AM</button>
-            <button className='button button--yellow mr-2'>8:30 AM</button> */}
-
-
-
+            PENDIENTE DE HACER ESTA MOÑA, GAAAAAAAAAAA !
           </div>
         </div>
       </div>
-      <div className={styles.container3}>
-        <div className='flex items-center my-1'>
-          <h4 className={`${styles.h4} pr-9`}>NOMBRE</h4>
-          <input className={styles.input3} value={name} onChange={(e) => setName(e.target.value)} />
+      <div>
+        <div className={styles.radiocontainer}>
+          <label>
+            <input
+              className='mr-2'
+              type="radio"
+              value="nuevo"
+              checked={selectedOption === 'nuevo'}
+              onChange={(e) => setSelectedOption(e.target.value)}/>
+            PACIENTE NUEVO
+          </label>
+          <label>
+            <input
+              className='mr-2'
+              type="radio"
+              value="antiguo"
+              checked={selectedOption === 'antiguo'}
+              onChange={(e) => setSelectedOption(e.target.value)}/>
+            PACIENTE ANTIGUO
+          </label>
         </div>
-        <div className='flex items-center my-1'>
-          <h4 className={`${styles.h4} pr-14`}>EDAD</h4>
-          <input className={styles.input3} type='number' value={age} onChange={(e) => setAge(e.target.value)} />
-        </div>
-        <div className='flex items-center my-1'>
-          <h4 className={`${styles.h4} pr-8`}>CELULAR</h4>
-          <input className={styles.input3} type='number' value={number} onChange={(e) => setNumber(e.target.value)} />
-        </div>
+        {selectedOption === 'nuevo' ? (
+          <div className={styles.containernew}>
+            <div className='flex items-center my-1'>
+              <h4 className={`${styles.h4} pr-9`}>NOMBRE</h4>
+              <input 
+              className={styles.input} 
+              value={name} 
+              onChange={(e) => onChange(e , 'name')}/>
+            </div>
+            <div className='flex items-center my-1'>
+              <h4 className={`${styles.h4} pr-14`}>EDAD</h4>
+              <input 
+              className={styles.input} 
+              type='number' 
+              value={age} 
+              onChange={(e) => onChange(e , 'age')}/>
+            </div>
+            <div className='flex items-center my-1'>
+              <h4 className={`${styles.h4} pr-8`}>CELULAR</h4>
+              <input 
+              className={styles.input} 
+              type='number' 
+              value={phone} 
+              onChange={(e) => onChange(e , 'phone')}/>
+            </div>
+            <div className={styles.btncontainer1}>
+              <button className='button button--gray' onClick={scheduleNew}>AGENDAR</button>
+              <button className='button button--red' onClick={handleClear}>LIMPIAR</button>
+            </div>
+          </div>
+        ) : 
+          <div className={styles.containerold}>
+            <div className='flex items-center'>
+              <h4 className={`${styles.h4} pr-8`}>PACIENTE</h4>
+              <select
+                  className={styles.input}
+                  value={name} 
+                  onChange={(e) => onChange(e, 'patient')}>
+                {NAMES.map(item => {
+                  if(item.speciality.includes("Odontología") && speciality === "Odontología"){
+                    nameCatch = item.name;
+                    ageCatch = item.age;
+                    phoneCatch = item.phone;
+                    return <option key={item.name} value={item.name}>{`${item.name} - #${item.phone}`}</option>
+                  }
+                  if(item.speciality.includes("Podología") && speciality === "Podología"){
+                    return <option key={item.name} value={item.name}>{`${item.name} - #${item.phone}`}</option>
+                  }
+                  return null;
+                })}
+              </select>
+            </div>
+            <div>
+              <div className='flex items-center my-1'>
+                <h4 className={`${styles.h4} pr-9`}>NOMBRE</h4>
+                <input 
+                disabled={true}
+                className={styles.inputblock} 
+                value={nameCatch} 
+                onChange={(e) => onChange(e , 'name')}/>
+              </div>
+              <div className='flex items-center my-1'>
+                <h4 className={`${styles.h4} pr-14`}>EDAD</h4>
+                <input 
+                disabled={true}
+                className={styles.inputblock} 
+                type='number' 
+                value={ageCatch} 
+                onChange={(e) => onChange(e , 'age')}/>
+              </div>
+              <div className='flex items-center my-1'>
+                <h4 className={`${styles.h4} pr-8`}>CELULAR</h4>
+                <input 
+                disabled={true}
+                className={styles.inputblock} 
+                type='number' 
+                value={phoneCatch} 
+                onChange={(e) => onChange(e , 'phone')}/>
+              </div>
+            </div>
+            <div className={styles.btncontainer2}>
+              <button className='button button--gray' onClick={scheduleOld}>AGENDAR</button>
+              <button className='button button--red' onClick={handleClear}>LIMPIAR</button>
+            </div>
+          </div>}
       </div>
-      <div className={styles.btncontainer}>
-        <button className='button button--gray' type='submit'>AGENDAR</button>
-        <button className='button button--red' onClick={handleClear}>LIMPIAR</button>
-      </div>
+
     </form>
   )
 }

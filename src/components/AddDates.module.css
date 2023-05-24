@@ -6,24 +6,36 @@
   @apply shadow flex flex-col w-full my-2 h-28 px-4;
 }
 
-.container3 {
+.containernew {
   @apply shadow flex flex-col w-full my-2 h-40 px-4;
 }
 
-.btncontainer {
-  @apply flex justify-around w-full my-5;
+.containerold {
+  @apply shadow flex flex-col w-full my-2 h-48 px-4;
+}
+
+.btncontainer1 {
+  @apply flex justify-around w-full my-5 mt-6;
+}
+
+.btncontainer2 {
+  @apply flex justify-around w-full my-5 mt-7;
+}
+
+.radiocontainer {
+  @apply flex flex-row w-full my-3 px-4 justify-around;
 }
 
 .h4 {
     @apply mr-3;
 }
 
-.input2 {
+.input {
     @apply nm-inset-gray-100 w-full border rounded-xl p-2 focus:outline-none focus:bg-white focus:border-gray-500;
   }
 
-.input3 {
-    @apply nm-inset-gray-100 w-full border rounded-xl p-2 focus:outline-none focus:bg-white focus:border-gray-500;
+.inputblock {
+    @apply nm-inset-gray-300 w-full border rounded-xl p-2 focus:outline-none focus:bg-white focus:border-gray-500;
   }
 
   .time {

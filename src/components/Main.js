@@ -10,14 +10,11 @@ function Main({children}) {
           <Url to={'/add-dates'} text="Agendar cita">
             <i className="fa-solid fa-calendar-check mr-2"></i>
           </Url>
-          <Url to={'/add-patient'} text="Añadir un paciente">
+          <Url to={'/patient'} text="Paciente">
             <i className="fa-solid fa-person mr-3"></i>
           </Url>
           <Url to={'/check-dates'} text="Revisar citas">
             <i className="fa-solid fa-calendar-days mr-2"></i>
-          </Url>
-          <Url to={'/history'} text="Revisar historia">
-            <i className="fa-solid fa-file-medical mr-2"></i>
           </Url>
         </div>
         <div>
