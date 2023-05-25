@@ -14,11 +14,20 @@ function Patient({children}) {
     name: ''
   })
 
+  const handleClear = (e) => {
+    e.preventDefault();
+    setForm({
+      speciality: '',
+      name: ''
+    })
+  }
+
   const onChange = (event, prop) => {
     setForm(prevState => ({...prevState, [prop]: event.target.value}))
   }
 
   const {speciality, name} = form;
+  const displayedNames = []
 
   return (
     <div>
@@ -41,18 +50,22 @@ function Patient({children}) {
                 onChange={(e) => onChange(e, 'name')}>
                 {DATES.map(item => {
                   if(item.speciality.includes("Odontología") && speciality === "Odontología"){
+                    if(!displayedNames.includes(item.id)){
+                      displayedNames.push(item.id);
                     return <option key={item.name} value={item.name}>{item.name}</option>
-                  }
+                  }}
                   if(item.speciality.includes("Podología") && speciality === "Podología"){
+                    if(!displayedNames.includes(item.id)){
+                      displayedNames.push(item.id);
                     return <option key={item.name} value={item.name}>{item.name}</option>
-                  }
+                  }}
                   return null;
                 })}
             </select>
           </div>
           <div className={styles.btncontainer}>
             <button className='button button--gray'>BUSCAR</button>
-            <button className='button button--red'>LIMPIAR</button>
+            <button onClick={handleClear} className='button button--red'>LIMPIAR</button>
           </div>
         </div>
       </form>

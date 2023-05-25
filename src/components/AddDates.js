@@ -1,13 +1,15 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from './AddDates.module.css'
 import { Context } from '../services/Memory'
-// import { useNavigate } from 'react-router-dom'
 
 function AddDates() {
   const [selectedOption, setSelectedOption] = useState('nuevo');
   const optionSpeciality = ["", "Odontología", "Podología"]
   const optionProfesional = ["", "Nancy Alarcón", "Ana Cuadros", "Ponchi Merengueti"]
-  const optionType = ["", "Consulta", "Operación", "Chequeo"]
+  const optionType = ["", "Consulta", "Operación", "Control"]
+  const [nameCatch, setNameCatch] = useState('')
+  const [ageCatch, setAgeCatch] = useState('')
+  const [phoneCatch, setPhoneCatch] = useState('')
 
   const [form, setForm] = useState({
     speciality: '',
@@ -20,15 +22,33 @@ function AddDates() {
     phone: ''
   })
 
-  const [state, send] = useContext(Context);
+  const [state, dispatch] = useContext(Context);
 
-  const NAMES = Object.values(state.dates);
+  const NAMES = Object.values(state.info);
 
   const onChange = (event, prop) => {
     setForm(state => ({...state, [prop]: event.target.value}))
   }
 
-  const clean = () => setForm({
+  const handleChange = (e) => {
+    const selectedName = e.target.value;
+    const selectedItem = NAMES.find(item => item.name === selectedName);
+    if (selectedItem) {
+      setNameCatch(selectedItem.name);
+      setAgeCatch(selectedItem.age);
+      setPhoneCatch(selectedItem.phone);
+    } else {
+      setNameCatch('');
+      setAgeCatch('');
+      setPhoneCatch('');
+    }
+  }
+
+  const clean = () =>  {
+    setNameCatch("")
+    setAgeCatch("")
+    setPhoneCatch("")
+    setForm({
     speciality: '',
     professional: '',
     atention: '',
@@ -36,8 +56,8 @@ function AddDates() {
     date: new Date().toISOString().split('T')[0],
     name: '',
     age: '',
-    phone: ''
-  })
+    phone: '',
+  })}
 
   const handleClear = (e) => {
     e.preventDefault();
@@ -45,7 +65,10 @@ function AddDates() {
   }
 
   const scheduleNew = (e) => {
-    send({type: 'scheduleNew', 
+    if(form.speciality === '' || form.professional === '' || form.atention === '') {
+      console.log("No se puede procesar, falta llenar datos importantes")
+    } else {
+    dispatch({type: 'scheduleNew', 
           payload: {
             name: form.name,
             age: form.age,
@@ -58,10 +81,13 @@ function AddDates() {
           }})
     clean();
     e.preventDefault();
-  }
+  }}
 
   const scheduleOld = (e) => {
-    send({type: 'scheduleOld', 
+    if(form.speciality === '' || form.professional === '' || form.atention === '') {
+      console.log("No se puede procesar, falta llenar datos importantes")
+    } else {
+    dispatch({type: 'scheduleOld', 
           payload: {
             name: nameCatch,
             phone: phoneCatch,
@@ -75,11 +101,13 @@ function AddDates() {
           })
     clean();
     e.preventDefault();
-  }
+  }}
 
-  let nameCatch = ''
-  let ageCatch = ''
-  let phoneCatch = ''
+  useEffect(()=> {
+    setNameCatch('')
+    setAgeCatch('')
+    setPhoneCatch('')
+  }, [form.speciality])
 
   const {speciality, professional, atention, details, date, name, age, phone} = form;
 
@@ -89,15 +117,17 @@ function AddDates() {
         <div className='flex items-center my-1'>
           <h4 className={styles.h4}>ESPECIALIDAD</h4>
           <select 
+            required
             className={styles.input} 
             value={speciality} 
             onChange={(e) => onChange(e , 'speciality')}>
-            {optionSpeciality.map(item => <option key={item}>{item}</option>)}
+            {optionSpeciality.map(item => <option key={item} value={item}>{item}</option>)}
           </select>
         </div>
         <div className='flex items-center'>
           <h4 className={styles.h4}>PROFESIONAL</h4>
           <select 
+            required
             className={styles.input}
             value={professional} 
             onChange={(e) => onChange(e , 'professional')}>
@@ -108,17 +138,18 @@ function AddDates() {
               if(speciality === 'Podología' && (item === 'Ana Cuadros' || item === 'Ponchi Merengueti') ){
                 return null;
               }
-              return <option key={item}>{item}</option>
+              return <option key={item} value={item}>{item}</option>
             })}
           </select>
         </div>
         <div className='flex items-center my-1'>
           <h4 className={`${styles.h4} pr-6`}>ATENCION</h4>
           <select 
-          className={styles.input}
-          value={atention}
-          onChange={(e) => onChange(e , 'atention')}>
-            {optionType.map(item => <option key={item}>{item}</option>)}
+            required
+            className={styles.input}
+            value={atention}
+            onChange={(e) => onChange(e , 'atention')}>
+              {optionType.map(item => <option key={item} value={item}>{item}</option>)}
           </select>
         </div>
         <div className='flex items-center my-1'>
@@ -204,20 +235,16 @@ function AddDates() {
               <h4 className={`${styles.h4} pr-8`}>PACIENTE</h4>
               <select
                   className={styles.input}
-                  value={name} 
-                  onChange={(e) => onChange(e, 'patient')}>
-                {NAMES.map(item => {
-                  if(item.speciality.includes("Odontología") && speciality === "Odontología"){
-                    nameCatch = item.name;
-                    ageCatch = item.age;
-                    phoneCatch = item.phone;
-                    return <option key={item.name} value={item.name}>{`${item.name} - #${item.phone}`}</option>
-                  }
-                  if(item.speciality.includes("Podología") && speciality === "Podología"){
-                    return <option key={item.name} value={item.name}>{`${item.name} - #${item.phone}`}</option>
-                  }
-                  return null;
-                })}
+                  value={nameCatch} 
+                  onChange={handleChange}>
+                  <option value=''>Seleccione</option>
+                  {NAMES
+                  .filter(item => item.speciality.includes(speciality))
+                  .map(item => (
+                    <option key={item.name} value={item.name}>
+                      {item.name}
+                    </option>
+                  ))}
               </select>
             </div>
             <div>

@@ -1,0 +1,23 @@
+.table {
+    @apply border-gray-500 border-4;
+}
+
+.thead {
+    @apply border-gray-500 border-2 text-xl;
+}
+
+.rowhead {
+    @apply px-2 border-2 border-gray-500;
+}
+
+.row {
+    @apply p-2 border-2 border-gray-500;
+}
+
+.buttonedit {
+    @apply rounded-full mr-5 p-2 hover:bg-green-300;
+}
+
+.buttondelete {
+    @apply rounded-full p-2 hover:bg-red-400;
+}

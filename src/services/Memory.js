@@ -32,7 +32,7 @@ function reductor(state, action){
                 order: [...state.order, id],
                 info: {
                     ...state.info,
-                    [id] : {name, age, phone}
+                    [id] : {id, name, age, phone, speciality}
                 },
                 dates: [...state.dates, newDate],
                 history: {...state.history}
@@ -45,12 +45,13 @@ function reductor(state, action){
             const {speciality, professional, atention, details, date, name, age, phone} = action.payload;
             let id = ''
 
-            const newShedule = state.dates.map(item => {
-                if(item.name === name && item.age === age && item.phone === phone) {
+            for (const key in state.info) {
+                const item = state.info[key];
+                if (item.name === name && item.age === age && item.phone === phone) {
                     id = item.id;
+                    break;
                 }
-                return item;
-            })
+            }
             
             const newDate = {
                 id,
@@ -72,6 +73,26 @@ function reductor(state, action){
             }
             console.log(newState)
             return newState;
+        }
+        case 'deleteDate': {
+            const {id, speciality, atention, details, name, date} = action.payload;
+            
+            const index = state.dates.findIndex(item => (
+                item.id === id && item.speciality === speciality && item.atention === atention && item.details === details && item.name === name && item.date === date
+            ))
+
+            if (index !== -1) {
+                const newDates = [...state.dates];
+                newDates.splice(index, 1);            
+
+                const newState = {
+                    ...state,
+                    dates: newDates
+                }
+                console.log(newState)
+                return newState;
+            }
+            return state;
         }
         default: {
             throw new Error();
