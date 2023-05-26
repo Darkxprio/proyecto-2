@@ -237,7 +237,7 @@ function AddDates() {
                   className={styles.input}
                   value={nameCatch} 
                   onChange={handleChange}>
-                  <option value=''>Seleccione</option>
+                  <option key={''} value=''>Seleccione</option>
                   {NAMES
                   .filter(item => item.speciality.includes(speciality))
                   .map(item => (

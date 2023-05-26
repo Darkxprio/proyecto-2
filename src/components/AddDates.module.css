@@ -27,20 +27,20 @@
 }
 
 .h4 {
-    @apply mr-3;
+  @apply mr-3;
 }
 
 .input {
-    @apply nm-inset-gray-100 w-full border rounded-xl p-2 focus:outline-none focus:bg-white focus:border-gray-500;
-  }
+  @apply nm-inset-gray-100 w-full border rounded-xl p-2 focus:outline-none focus:bg-white focus:border-gray-500;
+}
 
 .inputblock {
-    @apply nm-inset-gray-300 w-full border rounded-xl p-2 focus:outline-none focus:bg-white focus:border-gray-500;
-  }
+  @apply nm-inset-gray-300 w-full border rounded-xl p-2 focus:outline-none focus:bg-white focus:border-gray-500;
+}
 
-  .time {
-    @apply w-full;
-  }
+.time {
+  @apply w-full;
+}
   
 
 /* MENOS - NORMAL */

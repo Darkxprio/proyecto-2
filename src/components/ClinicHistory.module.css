@@ -1,0 +1,3 @@
+.card {
+    @apply rounded-xl p-4 nm-flat-white overflow-hidden;
+}

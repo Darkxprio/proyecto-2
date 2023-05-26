@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import styles from './Patient.module.css'
 import { Context } from '../services/Memory'
+import History from './History';
 
 function Patient({children}) {
 
@@ -69,7 +70,7 @@ function Patient({children}) {
           </div>
         </div>
       </form>
-      {children}
+      <History />
     </div>
   )
 }

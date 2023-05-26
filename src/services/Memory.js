@@ -2,12 +2,15 @@ import React, { useReducer } from 'react'
 import { createContext } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
-const initialState = {
-    order: [],
-    info: {},
-    dates: [],
-    history: {}
-}
+const memory = localStorage.getItem('consultory');
+const initialState = memory
+    ?JSON.parse(memory)
+    : {
+        order: [],
+        info: {},
+        dates: [],
+        history: {}
+    };
 
 function reductor(state, action){
     switch(action.type){
@@ -37,8 +40,8 @@ function reductor(state, action){
                 dates: [...state.dates, newDate],
                 history: {...state.history}
             }
-            
             console.log(newState)
+            localStorage.setItem('consultory', JSON.stringify(newState))
             return newState;
         }
         case 'scheduleOld': {
@@ -72,6 +75,7 @@ function reductor(state, action){
                 history: {...state.history}
             }
             console.log(newState)
+            localStorage.setItem('consultory', JSON.stringify(newState))
             return newState;
         }
         case 'deleteDate': {
@@ -82,6 +86,7 @@ function reductor(state, action){
             ))
 
             if (index !== -1) {
+                console.log(index)
                 const newDates = [...state.dates];
                 newDates.splice(index, 1);            
 
@@ -90,9 +95,35 @@ function reductor(state, action){
                     dates: newDates
                 }
                 console.log(newState)
+                localStorage.setItem('consultory', JSON.stringify(newState))
                 return newState;
             }
             return state;
+        }
+        case 'updateDate': {
+            const {id, speciality, professional, atention, details, date, specialityBefore, professionalBefore, dateBefore, atentionBefore, detailsBefore } = action.payload;
+
+            const updatedDates = state.dates.map(item => {
+                if(item.id === id && item.speciality === specialityBefore && item.professional === professionalBefore && item.date === dateBefore && item.atention === atentionBefore && item.details === detailsBefore){
+                    return {
+                        ...item,
+                        speciality,
+                        professional,
+                        atention,
+                        details,
+                        date
+                      };
+                }
+                return item;
+            })
+
+            const newState = {
+                ...state,
+                dates: updatedDates
+            }
+            console.log(newState)
+            localStorage.setItem('consultory', JSON.stringify(newState))
+            return newState;
         }
         default: {
             throw new Error();

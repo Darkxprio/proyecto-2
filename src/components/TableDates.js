@@ -1,14 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import styles from './TableDates.module.css'
 import { Context } from '../services/Memory';
+import Url2 from './Url2';
 
 function TableDates({data}) {
 
     const [, dispatch] = useContext(Context);
     const [tableData, setTableData] = useState(data);
-    const handleEdit = () => {
-
-    }
 
     const handleDelete = (id, speciality, atention, details, name, date) => {
         dispatch({
@@ -55,9 +53,11 @@ function TableDates({data}) {
               <td className={styles.row}>{item.name}</td>
               <td className={`${styles.row} text-center`}>{item.age}</td>
               <td className={`${styles.row} text-center`}>
-              <button 
-              onClick={handleEdit}
-              ><i className={`${styles.buttonedit} fa-regular fa-pen-to-square`}></i></button>
+              <Url2 to={`/check-dates/${item.id}/${item.details}/${item.atention}`}>
+                <button>
+                    <i className={`${styles.buttonedit} fa-regular fa-pen-to-square`}></i>
+                </button>
+                </Url2>
               <button 
               onClick={(e) => {
                 handleDelete(item.id, item.speciality, item.atention, item.details, item.name, item.date);
