@@ -22,7 +22,7 @@ function History() {
 
   return (
     <div className={styles.container}>
-        <div className='h-12'>
+        <div className='h-8'>
             <div className={styles.btncontainer}>
                 <button 
                 onClick={() =>setActiveTab('clinicStory')} 

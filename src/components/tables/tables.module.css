@@ -1,0 +1,15 @@
+.table {
+    @apply border-gray-500 border-4;
+}
+
+.thead {
+    @apply border-gray-500 border-2 text-xl;
+}
+
+.rowhead {
+    @apply px-2 border-2 border-gray-500;
+}
+
+.row {
+    @apply p-2 border-2 border-gray-500;
+}

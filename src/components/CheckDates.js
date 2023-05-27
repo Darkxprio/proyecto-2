@@ -53,7 +53,7 @@ function CheckDates() {
 
   return (
       <div className={styles.container}>
-        <div className='flex items-center my-1'>
+        <div className='flex items-center my-1 justify-between'>
           <h4 className={styles.h4}>ESPECIALIDAD</h4>
           <select 
               className={styles.input} 
@@ -62,8 +62,8 @@ function CheckDates() {
               {optionSpeciality.map(item => <option key={item}>{item}</option>)}
           </select>
         </div>
-        <div className='flex items-center'>
-          <h4 className={`${styles.h4}`}>PROFESIONAL</h4>
+        <div className='flex items-center justify-between'>
+          <h4 className={styles.h4}>PROFESIONAL</h4>
           <select 
             className={styles.input}
             value={professional} 
@@ -79,8 +79,8 @@ function CheckDates() {
             })}
           </select>
         </div>
-        <div className='flex items-center my-1'>
-          <h4 className={`${styles.h4} pr-14`}>FECHA</h4>
+        <div className='flex items-center my-1 justify-between'>
+          <h4 className={styles.h4}>FECHA</h4>
           <input 
           className={styles.input} 
           type='date' 

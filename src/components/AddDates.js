@@ -114,7 +114,7 @@ function AddDates() {
   return (
     <form>
       <div className={styles.container1}>
-        <div className='flex items-center my-1'>
+        <div className='flex items-center my-1 justify-between'>
           <h4 className={styles.h4}>ESPECIALIDAD</h4>
           <select 
             required
@@ -124,7 +124,7 @@ function AddDates() {
             {optionSpeciality.map(item => <option key={item} value={item}>{item}</option>)}
           </select>
         </div>
-        <div className='flex items-center'>
+        <div className='flex items-center justify-between'>
           <h4 className={styles.h4}>PROFESIONAL</h4>
           <select 
             required
@@ -142,8 +142,8 @@ function AddDates() {
             })}
           </select>
         </div>
-        <div className='flex items-center my-1'>
-          <h4 className={`${styles.h4} pr-6`}>ATENCION</h4>
+        <div className='flex items-center my-1 justify-between'>
+          <h4 className={styles.h4}>ATENCION</h4>
           <select 
             required
             className={styles.input}
@@ -152,9 +152,9 @@ function AddDates() {
               {optionType.map(item => <option key={item} value={item}>{item}</option>)}
           </select>
         </div>
-        <div className='flex items-center my-1'>
+        <div className='flex items-center my-1 justify-between'>
           <h4 
-            className={`${styles.h4} pr-8`}>DETALLES</h4>
+            className={styles.h4}>DETALLES</h4>
           <textarea 
             className={`${styles.input} resize-none`}
             value={details}
@@ -163,16 +163,16 @@ function AddDates() {
         </div>
       </div>
       <div className={styles.container2}>
-        <div className='flex items-center my-1'>
-        <h4 className={`${styles.h4} pr-12`}>FECHA</h4>
+        <div className='flex items-center my-1 justify-between'>
+        <h4 className={styles.h4}>FECHA</h4>
           <input 
           className={styles.input} 
           type='date' 
           value={date} 
           onChange={(e) => onChange(e , 'date')}/>
         </div>
-        <div className='flex items-center my-1'>
-        <h4 className={`${styles.h4} pr-6`}>HORARIO</h4>
+        <div className='flex items-center my-1 justify-between'>
+        <h4 className={styles.h4}>HORARIO</h4>
           <div>
             PENDIENTE DE HACER ESTA MOÑA, GAAAAAAAAAAA !
           </div>
@@ -201,23 +201,23 @@ function AddDates() {
         </div>
         {selectedOption === 'nuevo' ? (
           <div className={styles.containernew}>
-            <div className='flex items-center my-1'>
-              <h4 className={`${styles.h4} pr-9`}>NOMBRE</h4>
+            <div className='flex items-center my-1 justify-between'>
+              <h4 className={styles.h4}>NOMBRE</h4>
               <input 
               className={styles.input} 
               value={name} 
               onChange={(e) => onChange(e , 'name')}/>
             </div>
-            <div className='flex items-center my-1'>
-              <h4 className={`${styles.h4} pr-14`}>EDAD</h4>
+            <div className='flex items-center my-1 justify-between'>
+              <h4 className={styles.h4}>EDAD</h4>
               <input 
               className={styles.input} 
               type='number' 
               value={age} 
               onChange={(e) => onChange(e , 'age')}/>
             </div>
-            <div className='flex items-center my-1'>
-              <h4 className={`${styles.h4} pr-8`}>CELULAR</h4>
+            <div className='flex items-center my-1 justify-between'>
+              <h4 className={styles.h4}>CELULAR</h4>
               <input 
               className={styles.input} 
               type='number' 
@@ -231,8 +231,8 @@ function AddDates() {
           </div>
         ) : 
           <div className={styles.containerold}>
-            <div className='flex items-center'>
-              <h4 className={`${styles.h4} pr-8`}>PACIENTE</h4>
+            <div className='flex items-center justify-between'>
+              <h4 className={styles.h4}>PACIENTE</h4>
               <select
                   className={styles.input}
                   value={nameCatch} 
@@ -248,16 +248,16 @@ function AddDates() {
               </select>
             </div>
             <div>
-              <div className='flex items-center my-1'>
-                <h4 className={`${styles.h4} pr-9`}>NOMBRE</h4>
+              <div className='flex items-center my-1 justify-between'>
+                <h4 className={styles.h4}>NOMBRE</h4>
                 <input 
                 disabled={true}
                 className={styles.inputblock} 
                 value={nameCatch} 
                 onChange={(e) => onChange(e , 'name')}/>
               </div>
-              <div className='flex items-center my-1'>
-                <h4 className={`${styles.h4} pr-14`}>EDAD</h4>
+              <div className='flex items-center my-1 justify-between'>
+                <h4 className={styles.h4}>EDAD</h4>
                 <input 
                 disabled={true}
                 className={styles.inputblock} 
@@ -265,8 +265,8 @@ function AddDates() {
                 value={ageCatch} 
                 onChange={(e) => onChange(e , 'age')}/>
               </div>
-              <div className='flex items-center my-1'>
-                <h4 className={`${styles.h4} pr-8`}>CELULAR</h4>
+              <div className='flex items-center my-1 justify-between'>
+                <h4 className={styles.h4}>CELULAR</h4>
                 <input 
                 disabled={true}
                 className={styles.inputblock} 

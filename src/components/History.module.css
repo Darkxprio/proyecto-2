@@ -3,7 +3,7 @@
 }
 
 .btncontainer {
-    @apply flex justify-around w-full my-3 h-9;
+    @apply flex justify-around w-full mt-3 h-9;
 }
 
 .button {
