@@ -1,0 +1,13 @@
+.card {
+    @apply rounded-xl p-4 mx-6 my-4 nm-flat-white overflow-hidden;
+}
+
+.h2 {
+    @apply mr-3;
+}
+
+.input {
+    @apply nm-inset-gray-100 border rounded-xl p-1 focus:outline-none focus:bg-white focus:border-gray-500;
+    max-width: 90%;
+    width: 100%;
+}

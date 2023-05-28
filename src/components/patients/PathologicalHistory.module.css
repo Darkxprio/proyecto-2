@@ -1,0 +1,11 @@
+.card {
+    @apply rounded-xl p-4 mx-6 my-4 nm-flat-white overflow-hidden;
+}
+
+.checkbox {
+    @apply mr-6;
+}
+
+.h2 {
+    @apply mr-3;
+}

@@ -1,27 +1,30 @@
-import { Route, Routes } from 'react-router-dom';
-import './App.css';
-import Login from './components/Login';
-import NotFound from './components/NotFound';
-import Layout from './components/Layout';
-import AddDates from './components/AddDates';
-import Patient from './components/Patient';
-import CheckDates from './components/CheckDates';
-import Principal from './components/Principal';
-import Update from './components/Update';
-import Modal from './components/Modal'
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import Login from "./components/Login";
+import NotFound from "./components/NotFound";
+import Layout from "./components/Layout";
+import AddDates from "./components/add-dates/AddDates";
+import Patient from "./components/patients/Patient";
+import CheckDates from "./components/check-dates/CheckDates";
+import Principal from "./components/Principal";
+import Update from "./components/check-dates/Update";
+import Modal from "./components/Modal";
 
 function App() {
   return (
     <Routes>
-      <Route path='/login' element={<Login />} />
-      <Route path='/' element={<Layout />} >
+      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Layout />}>
         <Route index element={<Principal />} />
-        <Route path='/add-dates' element={<AddDates />} />
-        <Route path='/patient' element={<Patient />} />
-        <Route path='/check-dates/*' element={<CheckDates />} />
-        <Route path="/check-dates/:id/:details/:atention/*" element={<Modal children={<Update />} />} />
+        <Route path="/add-dates" element={<AddDates />} />
+        <Route path="/patient" element={<Patient />} />
+        <Route path="/check-dates/*" element={<CheckDates />} />
+        <Route
+          path="/check-dates/:id/:details/:atention/*"
+          element={<Modal children={<Update />} />}
+        />
       </Route>
-      <Route path='*' element={<NotFound />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
