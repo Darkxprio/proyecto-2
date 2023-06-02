@@ -3,7 +3,6 @@ import styles from "./AddDates.module.css";
 import { Context } from "../../services/Memory";
 
 function AddDates() {
-  const [buttonStates, setButtonStates] = useState(Array(23).fill(false));
   const [selectedOption, setSelectedOption] = useState("nuevo");
   const optionSpeciality = ["", "Odontología", "Podología"];
   const optionProfesional = [
@@ -158,15 +157,6 @@ function AddDates() {
     }
   };
 
-  const handleButton = (index, e) => {
-    e.preventDefault();
-    setButtonStates((prevButtonStates) => {
-      const newButtonStates = [...prevButtonStates];
-      newButtonStates[index] = !newButtonStates[index];
-      return newButtonStates;
-    });
-  };
-
   return (
     <form>
       <div className={styles.container1}>
@@ -248,192 +238,7 @@ function AddDates() {
         {renderTime()}
         <div className="flex items-center my-2 justify-between">
           <h4 className={styles.h4}>HORARIO</h4>
-          <div className={styles.btngrid}>
-            <button
-              onClick={(e) => handleButton(0, e)}
-              className={`${styles.btntime} ${
-                buttonStates[0] ? styles.buttonclick : ""
-              }`}
-            >
-              10:00 AM
-            </button>
-            <button
-              onClick={(e) => handleButton(1, e)}
-              className={`${styles.btntime} ${
-                buttonStates[1] ? styles.buttonclick : ""
-              }`}
-            >
-              10:30 AM
-            </button>
-            <button
-              onClick={(e) => handleButton(2, e)}
-              className={`${styles.btntime} ${
-                buttonStates[2] ? styles.buttonclick : ""
-              }`}
-            >
-              11:00 AM
-            </button>
-            <button
-              onClick={(e) => handleButton(3, e)}
-              className={`${styles.btntime} ${
-                buttonStates[3] ? styles.buttonclick : ""
-              }`}
-            >
-              11:30 AM
-            </button>
-            <button
-              onClick={(e) => handleButton(4, e)}
-              className={`${styles.btntime} ${
-                buttonStates[4] ? styles.buttonclick : ""
-              }`}
-            >
-              12:00 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(5, e)}
-              className={`${styles.btntime} ${
-                buttonStates[5] ? styles.buttonclick : ""
-              }`}
-            >
-              12:30 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(6, e)}
-              className={`${styles.btntime} ${
-                buttonStates[6] ? styles.buttonclick : ""
-              }`}
-            >
-              01:00 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(7, e)}
-              className={`${styles.btntime} ${
-                buttonStates[7] ? styles.buttonclick : ""
-              }`}
-            >
-              01:30 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(8, e)}
-              className={`${styles.btntime} ${
-                buttonStates[8] ? styles.buttonclick : ""
-              }`}
-            >
-              02:00 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(9, e)}
-              className={`${styles.btntime} ${
-                buttonStates[9] ? styles.buttonclick : ""
-              }`}
-            >
-              02:30 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(10, e)}
-              className={`${styles.btntime} ${
-                buttonStates[10] ? styles.buttonclick : ""
-              }`}
-            >
-              03:00 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(11, e)}
-              className={`${styles.btntime} ${
-                buttonStates[11] ? styles.buttonclick : ""
-              }`}
-            >
-              03:30 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(12, e)}
-              className={`${styles.btntime} ${
-                buttonStates[12] ? styles.buttonclick : ""
-              }`}
-            >
-              04:00 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(13, e)}
-              className={`${styles.btntime} ${
-                buttonStates[13] ? styles.buttonclick : ""
-              }`}
-            >
-              04:30 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(14, e)}
-              className={`${styles.btntime} ${
-                buttonStates[14] ? styles.buttonclick : ""
-              }`}
-            >
-              05:00 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(15, e)}
-              className={`${styles.btntime} ${
-                buttonStates[15] ? styles.buttonclick : ""
-              }`}
-            >
-              05:30 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(16, e)}
-              className={`${styles.btntime} ${
-                buttonStates[16] ? styles.buttonclick : ""
-              }`}
-            >
-              06:00 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(17, e)}
-              className={`${styles.btntime} ${
-                buttonStates[17] ? styles.buttonclick : ""
-              }`}
-            >
-              06:30 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(18, e)}
-              className={`${styles.btntime} ${
-                buttonStates[18] ? styles.buttonclick : ""
-              }`}
-            >
-              07:00 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(19, e)}
-              className={`${styles.btntime} ${
-                buttonStates[19] ? styles.buttonclick : ""
-              }`}
-            >
-              07:30 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(20, e)}
-              className={`${styles.btntime} ${
-                buttonStates[20] ? styles.buttonclick : ""
-              }`}
-            >
-              08:00 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(21, e)}
-              className={`${styles.btntime} ${
-                buttonStates[21] ? styles.buttonclick : ""
-              }`}
-            >
-              08:30 PM
-            </button>
-            <button
-              onClick={(e) => handleButton(22, e)}
-              className={`${styles.btntime} ${
-                buttonStates[22] ? styles.buttonclick : ""
-              }`}
-            >
-              09:00 PM
-            </button>
-          </div>
+          <div>EN CONSTRUCCION</div>
         </div>
       </div>
       <div>

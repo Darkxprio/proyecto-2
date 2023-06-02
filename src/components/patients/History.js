@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import styles from "./History.module.css";
 import ClinicHistory from "./ClinicHistory";
-import IndicationsForward from "./IndicationsForward";
-import AppointmentHistory from "./AppointmentHistory";
+import HistoryAndForward from "./HistoryAndForward";
 
-function History() {
+function History({ dataInfo, dataHistory }) {
   const [activeTab, setActiveTab] = useState("clinicHistory");
 
   const renderContent = () => {
     switch (activeTab) {
       case "clinicStory":
-        return <ClinicHistory />;
+        return <ClinicHistory data={dataInfo} />;
       case "IndicationsForward":
-        return <IndicationsForward />;
-      case "appointmentHistory":
-        return <AppointmentHistory />;
+        return <HistoryAndForward data={dataHistory} />;
       default:
         return null;
     }
@@ -38,15 +35,7 @@ function History() {
               activeTab === "IndicationsForward" ? styles.activeButton : ""
             }`}
           >
-            INDICACIONES Y AVANCE
-          </button>
-          <button
-            onClick={() => setActiveTab("appointmentHistory")}
-            className={`${styles.button}  ${
-              activeTab === "appointmentHistory" ? styles.activeButton : ""
-            }`}
-          >
-            HISTORIAL DE CITAS
+            HISTORIAL DE CITAS Y AVANCE MEDICO
           </button>
         </div>
       </div>

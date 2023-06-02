@@ -192,7 +192,6 @@ function Update() {
             disabled={true}
             className={styles.inputblock}
             value={form.name}
-            onChange={(e) => onChange(e, "name")}
           />
         </div>
         <div className="flex items-center my-1 justify-between">
@@ -202,7 +201,6 @@ function Update() {
             className={styles.inputblock}
             type="number"
             value={form.age}
-            onChange={(e) => onChange(e, "age")}
           />
         </div>
         <div className="flex items-center my-1 justify-between">
@@ -212,7 +210,6 @@ function Update() {
             className={styles.inputblock}
             type="number"
             value={form.phone}
-            onChange={(e) => onChange(e, "phone")}
           />
         </div>
       </div>

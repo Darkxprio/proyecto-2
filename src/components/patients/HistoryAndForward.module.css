@@ -14,22 +14,6 @@
     @apply p-2 border-2 border-gray-500;
 }
 
-.buttonedit {
-    @apply rounded-full p-2 hover:bg-yellow-300;
-}
-
-.message {
-    @apply flex items-center fixed bg-gray-400 p-2 font-bold text-lg;
-}
-
-.buttondelete {
-    @apply rounded-full p-2 hover:bg-red-400;
-}
-
-.buttoncomplete {
-    @apply rounded-full m-1 p-2 hover:bg-green-400;
-}
-
 .greenrow {
     background-color: green;
 }
@@ -40,4 +24,8 @@
 
 .yellowrow {
     background-color: yellow;
+}
+
+.buttonedit {
+    @apply rounded-full p-2 hover:bg-yellow-300;
 }

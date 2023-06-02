@@ -50,6 +50,10 @@ function CheckDates() {
     setSearchResults(result);
   };
 
+  const updateSearchResults = (results) => {
+    setSearchResults(results);
+  };
+
   const onChange = (event, prop) => {
     setForm((state) => ({ ...state, [prop]: event.target.value }));
   };
@@ -108,7 +112,10 @@ function CheckDates() {
           LIMPIAR
         </button>
       </div>
-      <TableDates data={searchResults} />
+      <TableDates
+        data={searchResults}
+        updateSearchResults={updateSearchResults}
+      />
     </div>
   );
 }

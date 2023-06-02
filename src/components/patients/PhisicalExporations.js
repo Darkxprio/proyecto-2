@@ -13,7 +13,7 @@ import OrthopodologicExam from "./tables/OrthopodologicExam";
 import ShoeType from "./tables/ShoeType";
 import Deformity from "./tables/Deformity";
 
-function PhisicalExporations() {
+function PhisicalExporations({ data }) {
   const [selectedOption, setSelectedOption] = useState("");
 
   const explorationsPodology = [
@@ -38,29 +38,29 @@ function PhisicalExporations() {
 
   const renderTable = () => {
     if (selectedOption === "Examen Dermatol") {
-      return <DermatologicalExam />;
+      return <DermatologicalExam data={data} />;
     } else if (selectedOption === "Dedo Supraductos") {
-      return <FingerProducts />;
+      return <FingerProducts data={data} />;
     } else if (selectedOption === "Femoral") {
-      return <Femoral />;
+      return <Femoral data={data} />;
     } else if (selectedOption === "Examen Neurológico") {
-      return <NeurologicalExam />;
+      return <NeurologicalExam data={data} />;
     } else if (selectedOption === "Examen Podologico") {
-      return <PodriatryExam />;
+      return <PodriatryExam data={data} />;
     } else if (selectedOption === "Examen Ortopedico") {
-      return <OrthopedicExam />;
+      return <OrthopedicExam data={data} />;
     } else if (selectedOption === "Examen Angiol") {
-      return <AngiolExam />;
+      return <AngiolExam data={data} />;
     } else if (selectedOption === "Dactiloplastias") {
-      return <Dactyloplasties />;
+      return <Dactyloplasties data={data} />;
     } else if (selectedOption === "Pulsos") {
-      return <Pulses />;
+      return <Pulses data={data} />;
     } else if (selectedOption === "Examen Ortopodológico") {
-      return <OrthopodologicExam />;
+      return <OrthopodologicExam data={data} />;
     } else if (selectedOption === "Tipo de Calzado") {
-      return <ShoeType />;
+      return <ShoeType data={data} />;
     } else if (selectedOption === "Deformidad") {
-      return <Deformity />;
+      return <Deformity data={data} />;
     }
   };
   return (

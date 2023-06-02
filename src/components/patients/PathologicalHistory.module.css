@@ -9,3 +9,8 @@
 .h2 {
     @apply mr-3;
 }
+
+.input {
+    @apply w-28 border-slate-800;
+}
+
