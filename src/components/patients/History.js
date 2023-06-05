@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./History.module.css";
-import ClinicHistory from "./ClinicHistory";
+import ClinicHistoryPodology from "./ClinicHistoryPodology";
+import ClinicHistoryOdontology from "./ClinicHistoryOdontology";
 import HistoryAndForward from "./HistoryAndForward";
 
 function History({ dataInfo, dataHistory }) {
@@ -9,7 +10,13 @@ function History({ dataInfo, dataHistory }) {
   const renderContent = () => {
     switch (activeTab) {
       case "clinicStory":
-        return <ClinicHistory data={dataInfo} />;
+        if (dataInfo[0].speciality === undefined) {
+          return null;
+        } else if (dataInfo[0].speciality === "Odontología") {
+          return <ClinicHistoryOdontology data={dataInfo} />;
+        } else {
+          return <ClinicHistoryPodology data={dataInfo} />;
+        }
       case "IndicationsForward":
         return <HistoryAndForward data={dataHistory} />;
       default:

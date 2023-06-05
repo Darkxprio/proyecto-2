@@ -2,8 +2,6 @@ import React, { useReducer } from "react";
 import { createContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-// localStorage.clear();
-
 const memory = localStorage.getItem("consultory");
 const initialState = memory
   ? JSON.parse(memory)
@@ -592,6 +590,371 @@ function reductor(state, action) {
       const newState = {
         ...state,
         info: { ...state.info, [history.id]: newHistory },
+      };
+
+      console.log(newState);
+      localStorage.setItem("consultory", JSON.stringify(newState));
+      return newState;
+    }
+    case "addFingers": {
+      const {
+        infraductusd,
+        infraductusi,
+        halluxvalgusd,
+        halluxvalgusi,
+        halluxvarusd,
+        halluxvarusi,
+        halluxsaparatusd,
+        halluxsaparatusi,
+        halluxrigidusd,
+        halluxrigidusi,
+        halluxflexusd,
+        halluxflexusi,
+      } = action.payload.checkboxValues;
+
+      const { id } = action.payload.data[0];
+
+      const history = Object.values(state.info).find((item) => item.id === id);
+
+      const newHistory = {
+        ...history,
+        infraductusd: infraductusd,
+        infraductusi: infraductusi,
+        halluxvalgusd: halluxvalgusd,
+        halluxvalgusi: halluxvalgusi,
+        halluxvarusd: halluxvarusd,
+        halluxvarusi: halluxvarusi,
+        halluxsaparatusd: halluxsaparatusd,
+        halluxsaparatusi: halluxsaparatusi,
+        halluxrigidusd: halluxrigidusd,
+        halluxrigidusi: halluxrigidusi,
+        halluxflexusd: halluxflexusd,
+        halluxflexusi: halluxflexusi,
+      };
+
+      const newState = {
+        ...state,
+        info: { ...state.info, [history.id]: newHistory },
+      };
+
+      console.log(newState);
+      localStorage.setItem("consultory", JSON.stringify(newState));
+      return newState;
+    }
+    case "addOrthopedic": {
+      const {
+        pieplanod,
+        pieplanoi,
+        piecavod,
+        piecavoi,
+        pievalgod,
+        pievalgoi,
+        piequinod,
+        piequinoi,
+        pietalusd,
+        pietalusi,
+      } = action.payload.checkboxValues;
+
+      const { id } = action.payload.data[0];
+
+      const history = Object.values(state.info).find((item) => item.id === id);
+
+      const newHistory = {
+        ...history,
+        pieplanod: pieplanod,
+        pieplanoi: pieplanoi,
+        piecavod: piecavod,
+        piecavoi: piecavoi,
+        pievalgod: pievalgod,
+        pievalgoi: pievalgoi,
+        piequinod: piequinod,
+        piequinoi: piequinoi,
+        pietalusd: pietalusd,
+        pietalusi: pietalusi,
+      };
+
+      const newState = {
+        ...state,
+        info: { ...state.info, [history.id]: newHistory },
+      };
+
+      console.log(newState);
+      localStorage.setItem("consultory", JSON.stringify(newState));
+      return newState;
+    }
+    case "addNeurological": {
+      const {
+        reflaquileanod,
+        reflaquileanoi,
+        reflrotulianod,
+        reflrotulianoi,
+        anestesiad,
+        anestesiai,
+        parestesiad,
+        parestesiai,
+        hipoestesiad,
+        hipoestesiai,
+      } = action.payload.checkboxValues;
+
+      const { id } = action.payload.data[0];
+
+      const history = Object.values(state.info).find((item) => item.id === id);
+
+      const newHistory = {
+        ...history,
+        reflaquileanod: reflaquileanod,
+        reflaquileanoi: reflaquileanoi,
+        reflrotulianod: reflrotulianod,
+        reflrotulianoi: reflrotulianoi,
+        anestesiad: anestesiad,
+        anestesiai: anestesiai,
+        parestesiad: parestesiad,
+        parestesiai: parestesiai,
+        hipoestesiad: hipoestesiad,
+        hipoestesiai: hipoestesiai,
+      };
+
+      const newState = {
+        ...state,
+        info: { ...state.info, [history.id]: newHistory },
+      };
+
+      console.log(newState);
+      localStorage.setItem("consultory", JSON.stringify(newState));
+      return newState;
+    }
+    case "addOrthopodologic": {
+      const {
+        cuadradod,
+        cuadradoi,
+        egipciod,
+        egipcioi,
+        griegod,
+        griegoi,
+        normald,
+        normali,
+        patológicasd,
+        patológicasi,
+      } = action.payload.checkboxValues;
+
+      const { id } = action.payload.data[0];
+
+      const history = Object.values(state.info).find((item) => item.id === id);
+
+      const newHistory = {
+        ...history,
+        cuadradod: cuadradod,
+        cuadradoi: cuadradoi,
+        egipciod: egipciod,
+        egipcioi: egipcioi,
+        griegod: griegod,
+        griegoi: griegoi,
+        normald: normald,
+        normali: normali,
+        patológicasd: patológicasd,
+        patológicasi: patológicasi,
+      };
+
+      const newState = {
+        ...state,
+        info: { ...state.info, [history.id]: newHistory },
+      };
+
+      console.log(newState);
+      localStorage.setItem("consultory", JSON.stringify(newState));
+      return newState;
+    }
+    case "addPodiatry": {
+      const {
+        hsinnucled,
+        hsinnuclei,
+        hsncompld,
+        hsncompli,
+        hconnucleod,
+        hconnucleoi,
+        hcncompld,
+        hcncompli,
+        queratodermiad,
+        queratodermiai,
+      } = action.payload.checkboxValues;
+
+      const { id } = action.payload.data[0];
+
+      const history = Object.values(state.info).find((item) => item.id === id);
+
+      const newHistory = {
+        ...history,
+        hsinnucled: hsinnucled,
+        hsinnuclei: hsinnuclei,
+        hsncompld: hsncompld,
+        hsncompli: hsncompli,
+        hconnucleod: hconnucleod,
+        hconnucleoi: hconnucleoi,
+        hcncompld: hcncompld,
+        hcncompli: hcncompli,
+        queratodermiad: queratodermiad,
+        queratodermiai: queratodermiai,
+      };
+
+      const newState = {
+        ...state,
+        info: { ...state.info, [history.id]: newHistory },
+      };
+
+      console.log(newState);
+      localStorage.setItem("consultory", JSON.stringify(newState));
+      return newState;
+    }
+    case "addPulses": {
+      const { pediod, pedioi, tibialpostd, tibialposti, popliteod, popliteoi } =
+        action.payload.checkboxValues;
+
+      const { id } = action.payload.data[0];
+
+      const history = Object.values(state.info).find((item) => item.id === id);
+
+      const newHistory = {
+        ...history,
+        pediod: pediod,
+        pedioi: pedioi,
+        tibialpostd: tibialpostd,
+        tibialposti: tibialposti,
+        popliteod: popliteod,
+        popliteoi: popliteoi,
+      };
+
+      const newState = {
+        ...state,
+        info: { ...state.info, [history.id]: newHistory },
+      };
+
+      console.log(newState);
+      localStorage.setItem("consultory", JSON.stringify(newState));
+      return newState;
+    }
+    case "addShoe": {
+      const {
+        deportivod,
+        deportivoi,
+        altod,
+        altoi,
+        estrechod,
+        estrechoi,
+        puntafinad,
+        puntafinai,
+        botasd,
+        botasi,
+        sandaliasd,
+        sandaliasi,
+      } = action.payload.checkboxValues;
+
+      const { id } = action.payload.data[0];
+
+      const history = Object.values(state.info).find((item) => item.id === id);
+
+      const newHistory = {
+        ...history,
+        deportivod: deportivod,
+        deportivoi: deportivoi,
+        altod: altod,
+        altoi: altoi,
+        estrechod: estrechod,
+        estrechoi: estrechoi,
+        puntafinad: puntafinad,
+        puntafinai: puntafinai,
+        botasd: botasd,
+        botasi: botasi,
+        sandaliasd: sandaliasd,
+        sandaliasi: sandaliasi,
+      };
+
+      const newState = {
+        ...state,
+        info: { ...state.info, [history.id]: newHistory },
+      };
+
+      console.log(newState);
+      localStorage.setItem("consultory", JSON.stringify(newState));
+      return newState;
+    }
+    case "addTreatment": {
+      const treatment = action.payload.treatment;
+
+      const { id } = action.payload.data[0];
+
+      const history = Object.values(state.info).find((item) => item.id === id);
+
+      const newHistory = {
+        ...history,
+        treatment: `${treatment}`,
+      };
+
+      console.log(treatment);
+
+      const newState = {
+        ...state,
+        info: { ...state.info, [history.id]: newHistory },
+      };
+
+      console.log(newState);
+      localStorage.setItem("consultory", JSON.stringify(newState));
+      return newState;
+    }
+    case "addHealthQuestionnaire": {
+      const {
+        penicilina,
+        hemorragias,
+        cardiaca,
+        renal,
+        hepatica,
+        arterial,
+        reumatica,
+        diabetes,
+        anemia,
+      } = action.payload.checkboxValues;
+
+      const { id } = action.payload.data[0];
+
+      const history = Object.values(state.info).find((item) => item.id === id);
+
+      const newHistory = {
+        ...history,
+        penicilina: penicilina,
+        hemorragias: hemorragias,
+        cardiaca: cardiaca,
+        renal: renal,
+        hepatica: hepatica,
+        arterial: arterial,
+        reumatica: reumatica,
+        diabetes: diabetes,
+        anemia: anemia,
+      };
+
+      const newState = {
+        ...state,
+        info: { ...state.info, [history.id]: newHistory },
+      };
+
+      console.log(newState);
+      localStorage.setItem("consultory", JSON.stringify(newState));
+      return newState;
+    }
+    case "addDentalExam": {
+      const items = action.payload.items;
+
+      const { id } = action.payload.data[0];
+
+      const history = Object.values(state.info).find((item) => item.id === id);
+
+      const updatedHistory = { ...history };
+
+      items.forEach((item) => {
+        updatedHistory[item.item] = item.values;
+      });
+
+      const newState = {
+        ...state,
+        info: { ...state.info, [history.id]: updatedHistory },
       };
 
       console.log(newState);

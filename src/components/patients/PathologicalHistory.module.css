@@ -3,7 +3,7 @@
 }
 
 .checkbox {
-    @apply mr-6;
+    @apply ml-6;
 }
 
 .h2 {
@@ -13,4 +13,3 @@
 .input {
     @apply w-28 border-slate-800;
 }
-

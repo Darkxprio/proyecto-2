@@ -4,7 +4,7 @@ import PersonalInformation from "./PersonalInformation";
 import PhisicalExporations from "./PhisicalExporations";
 import Treatment from "./Treatment";
 
-function ClinicHistory({ data }) {
+function ClinicHistoryPodology({ data }) {
   return (
     <div>
       <PersonalInformation data={data} />
@@ -15,6 +15,4 @@ function ClinicHistory({ data }) {
   );
 }
 
-export default ClinicHistory;
-
-// const explorationsPodology = ["Dedo Supraductos", "Femoral", "Examen Neurológico", "Examen Podologico", "Examen Ortopedico", "Examen Angiol", "Dactiloplastias", "Pulsos"]
+export default ClinicHistoryPodology;

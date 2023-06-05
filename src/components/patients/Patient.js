@@ -24,7 +24,7 @@ function Patient() {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     const resultHistory = state.dates.filter((item) => {
       return item.name === name && item.speciality === speciality;
     });
@@ -33,6 +33,7 @@ function Patient() {
       return item.name === name && item.speciality === speciality;
     });
     setResultsInfo(resultInfo);
+    e.preventDefault();
   };
 
   const onChange = (event, prop) => {
@@ -48,6 +49,7 @@ function Patient() {
         <div className="flex items-center my-1">
           <h4 className={styles.h4}>ESPECIALIDAD</h4>
           <select
+            required
             className={styles.input}
             value={speciality}
             onChange={(e) => onChange(e, "speciality")}
@@ -60,6 +62,7 @@ function Patient() {
         <div className="flex items-center">
           <h4 className={`${styles.h4} pr-8`}>PACIENTE</h4>
           <select
+            required
             className={styles.input}
             value={name}
             onChange={(e) => onChange(e, "name")}

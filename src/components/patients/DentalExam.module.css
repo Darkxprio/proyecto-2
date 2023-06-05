@@ -1,0 +1,11 @@
+.card {
+    @apply rounded-xl p-4 mx-6 my-4 nm-flat-white overflow-hidden;
+}
+
+.tooth {
+    /* @apply w-1/4; */
+}
+
+.h2 {
+    @apply text-center
+}
