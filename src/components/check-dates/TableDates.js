@@ -10,7 +10,16 @@ function TableDates({ data, updateSearchResults }) {
   const [showUnavilable, setShowUnavilable] = useState(false);
   const [showComplete, setShowComplete] = useState(false);
 
-  const handleUnavilable = (id, speciality, atention, details, name, date) => {
+  const handleUnavilable = (
+    id,
+    speciality,
+    atention,
+    details,
+    name,
+    date,
+    timeRange,
+    professional
+  ) => {
     dispatch({
       type: "unavilableDate",
       payload: {
@@ -20,6 +29,8 @@ function TableDates({ data, updateSearchResults }) {
         details: details,
         name: name,
         date: date,
+        professional: professional,
+        timeRange: timeRange,
       },
     });
     updateSearchResults([]);
@@ -99,7 +110,7 @@ function TableDates({ data, updateSearchResults }) {
                 <td className={styles.row}>{item.professional}</td>
                 <td className={styles.row}>{item.atention}</td>
                 <td className={styles.row}>{item.date}</td>
-                <td className={styles.row}>EN PROCESO</td>
+                <td className={styles.row}>{item.timeRange}</td>
                 <td className={styles.row}>{item.name}</td>
                 <td className={`${styles.row} text-center`}>{item.age}</td>
                 <td className={styles.row}>{item.available}</td>
@@ -138,7 +149,9 @@ function TableDates({ data, updateSearchResults }) {
                         item.atention,
                         item.details,
                         item.name,
-                        item.date
+                        item.date,
+                        item.timeRange,
+                        item.professional
                       );
                       e.preventDefault();
                     }}

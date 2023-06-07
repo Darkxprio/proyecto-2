@@ -5,7 +5,7 @@ import ClinicHistoryOdontology from "./ClinicHistoryOdontology";
 import HistoryAndForward from "./HistoryAndForward";
 
 function History({ dataInfo, dataHistory }) {
-  const [activeTab, setActiveTab] = useState("clinicHistory");
+  const [activeTab, setActiveTab] = useState("IndicationsForward");
 
   const renderContent = () => {
     switch (activeTab) {
@@ -20,7 +20,7 @@ function History({ dataInfo, dataHistory }) {
       case "IndicationsForward":
         return <HistoryAndForward data={dataHistory} />;
       default:
-        return null;
+        return <HistoryAndForward data={dataHistory} />;
     }
   };
 

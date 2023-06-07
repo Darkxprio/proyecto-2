@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import styles from './Login.module.css';
-import { useNavigate } from 'react-router-dom';
-import Modal from './Modal';
-import UserError from './UserError';
-import SVGLogo from '../img/CENTRO DENTAL - PODOLOGICO.svg'
+import React, { useState } from "react";
+import styles from "./Login.module.css";
+import { useNavigate } from "react-router-dom";
+import Modal from "./Modal";
+import UserError from "./UserError";
+import SVGLogo from "../img/CENTRO DENTAL - PODOLOGICO.svg";
 
 function Login() {
-  const [user, setUser] = useState('');
-  const [password, setPassword] = useState('');
+  const [user, setUser] = useState("admin");
+  const [password, setPassword] = useState("admin");
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
@@ -21,8 +21,8 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (user === 'admin' && password === 'admin') {
-      navigate('/');
+    if (user === "admin" && password === "admin") {
+      navigate("/");
     } else {
       setShowModal(true);
     }
@@ -40,7 +40,7 @@ function Login() {
         </Modal>
       )}
       <form className={styles.container} onSubmit={handleSubmit}>
-        <img className='h-40' src={SVGLogo} alt='Logo' />
+        <img className="h-40" src={SVGLogo} alt="Logo" />
         <h2 className={styles.h2}>LOGIN</h2>
         <div className={styles.text}>
           <input
@@ -52,7 +52,7 @@ function Login() {
         </div>
         <div className={styles.text}>
           <input
-            type='password'
+            type="password"
             className={styles.input}
             value={password}
             onChange={handlePassword}

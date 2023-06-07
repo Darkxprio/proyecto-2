@@ -17,6 +17,7 @@ function AddHistory() {
     date: date,
     treatment: "",
     prescription: "",
+    time: "",
   });
 
   let dateFound = useRef(null);
@@ -34,6 +35,7 @@ function AddHistory() {
         professional: dateFound.current.professional,
         treatment: dateFound.current.treatment,
         prescription: dateFound.current.prescription,
+        time: dateFound.current.timeRange,
       }));
     }
   }, [id, atention, date, state.dates]);
@@ -108,7 +110,11 @@ function AddHistory() {
         </div>
         <div className="flex items-center my-1 justify-between">
           <h4 className={styles.h4}>HORARIO</h4>
-          <div>PENDIENTE DE HACER ESTA MOÑA, GAAAAAAAAAAA !</div>
+          <input
+            disabled={true}
+            value={form.time}
+            className={styles.inputblock}
+          />
         </div>
       </div>
       <div className={styles.container2}>

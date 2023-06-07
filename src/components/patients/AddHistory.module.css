@@ -1,9 +1,10 @@
 .card {
     @apply rounded-xl p-4 nm-flat-white overflow-hidden;
+    width: 700px;
   }
 
 .container1 {
-    @apply shadow flex flex-col w-full mt-2 h-60 px-4;
+    @apply shadow flex flex-col w-full mt-2 h-64 px-4;
 }
 
 .container2 {

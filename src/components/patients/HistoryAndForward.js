@@ -41,7 +41,7 @@ function HistoryAndForward({ data }) {
                 <td className={styles.row}>{item.professional}</td>
                 <td className={styles.row}>{item.atention}</td>
                 <td className={styles.row}>{item.date}</td>
-                <td className={styles.row}>EN PROCESO</td>
+                <td className={styles.row}>{item.timeRange}</td>
                 <td className={`${styles.row} text-sm`}>{item.treatment}</td>
                 <td className={`${styles.row} text-sm`}>{item.prescription}</td>
                 <td className={`${styles.row} text-center`}>

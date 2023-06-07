@@ -2,6 +2,8 @@ import React, { useReducer } from "react";
 import { createContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 
+// localStorage.clear();
+
 const memory = localStorage.getItem("consultory");
 const initialState = memory
   ? JSON.parse(memory)
@@ -9,6 +11,7 @@ const initialState = memory
       order: [],
       info: {},
       dates: [],
+      time: [],
     };
 
 function reductor(state, action) {
@@ -23,34 +26,97 @@ function reductor(state, action) {
         name,
         age,
         phone,
+        times,
       } = action.payload;
 
       const id = uuidv4();
+      const idTime = (speciality + professional + date)
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s/g, "")
+        .toUpperCase();
 
-      const newDate = {
-        id,
-        name,
-        age,
-        phone,
-        speciality,
-        professional,
-        atention,
-        details,
-        date,
-        available: "Pendiente",
-      };
+      const firstTime = times[0];
+      const lastTime = times[times.length - 1];
+      const timeRange = `${firstTime} - ${lastTime}`.replace(/"/g, "");
 
-      const newState = {
-        order: [...state.order, id],
-        info: {
-          ...state.info,
-          [id]: { id, name, age, phone, speciality },
-        },
-        dates: [...state.dates, newDate],
-      };
-      console.log(newState);
-      localStorage.setItem("consultory", JSON.stringify(newState));
-      return newState;
+      const timesObject = {};
+      times.forEach((time) => {
+        timesObject[time] = time;
+      });
+
+      const isNewTime = state.time.some((item) => item.idTime === idTime);
+
+      if (isNewTime) {
+        const updatedTime = state.time.map((item) => {
+          if (item.idTime === idTime) {
+            return {
+              ...item,
+              ...timesObject,
+            };
+          }
+          return item;
+        });
+
+        const newDate = {
+          id,
+          name,
+          age,
+          phone,
+          speciality,
+          professional,
+          atention,
+          details,
+          date,
+          timeRange,
+          available: "Pendiente",
+        };
+
+        const newState = {
+          order: [...state.order, id],
+          info: {
+            ...state.info,
+            [id]: { id, name, age, phone, speciality },
+          },
+          dates: [...state.dates, newDate],
+          time: updatedTime,
+        };
+        console.log(newState);
+        localStorage.setItem("consultory", JSON.stringify(newState));
+        return newState;
+      } else {
+        const newTimes = {
+          ...timesObject,
+          idTime,
+        };
+
+        const newDate = {
+          id,
+          name,
+          age,
+          phone,
+          speciality,
+          professional,
+          atention,
+          details,
+          date,
+          timeRange,
+          available: "Pendiente",
+        };
+
+        const newState = {
+          order: [...state.order, id],
+          info: {
+            ...state.info,
+            [id]: { id, name, age, phone, speciality },
+          },
+          dates: [...state.dates, newDate],
+          time: [...state.time, newTimes],
+        };
+        console.log(newState);
+        localStorage.setItem("consultory", JSON.stringify(newState));
+        return newState;
+      }
     }
     case "scheduleOld": {
       const {
@@ -62,8 +128,25 @@ function reductor(state, action) {
         name,
         age,
         phone,
+        times,
       } = action.payload;
       let id = "";
+      const idTime = (speciality + professional + date)
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s/g, "")
+        .toUpperCase();
+
+      const firstTime = times[0];
+      const lastTime = times[times.length - 1];
+      const timeRange = `${firstTime} - ${lastTime}`.replace(/"/g, "");
+
+      const timesObject = {};
+      times.forEach((time) => {
+        timesObject[time] = time;
+      });
+
+      const isNewTime = state.time.some((item) => item.idTime === idTime);
 
       for (const key in state.info) {
         const item = state.info[key];
@@ -73,30 +156,82 @@ function reductor(state, action) {
         }
       }
 
-      const newDate = {
-        id,
-        name,
-        age,
-        phone,
-        speciality,
-        professional,
-        atention,
-        details,
-        date,
-        available: "Pendiente",
-      };
+      if (isNewTime) {
+        const updatedTime = state.time.map((item) => {
+          if (item.idTime === idTime) {
+            return {
+              ...item,
+              ...timesObject,
+            };
+          }
+          return item;
+        });
 
-      const newState = {
-        order: [...state.order],
-        info: { ...state.info },
-        dates: [...state.dates, newDate],
-      };
-      console.log(newState);
-      localStorage.setItem("consultory", JSON.stringify(newState));
-      return newState;
+        const newDate = {
+          id,
+          name,
+          age,
+          phone,
+          speciality,
+          professional,
+          atention,
+          details,
+          date,
+          timeRange,
+          available: "Pendiente",
+        };
+
+        const newState = {
+          order: [...state.order],
+          info: { ...state.info },
+          dates: [...state.dates, newDate],
+          time: updatedTime,
+        };
+        console.log(newState);
+        localStorage.setItem("consultory", JSON.stringify(newState));
+        return newState;
+      } else {
+        const newTimes = {
+          ...timesObject,
+          idTime,
+        };
+
+        const newDate = {
+          id,
+          name,
+          age,
+          phone,
+          speciality,
+          professional,
+          atention,
+          details,
+          date,
+          timeRange,
+          available: "Pendiente",
+        };
+
+        const newState = {
+          order: [...state.order],
+          info: { ...state.info },
+          dates: [...state.dates, newDate],
+          time: [...state.time, newTimes],
+        };
+        console.log(newState);
+        localStorage.setItem("consultory", JSON.stringify(newState));
+        return newState;
+      }
     }
     case "unavilableDate": {
-      const { id, speciality, atention, details, name, date } = action.payload;
+      const {
+        id,
+        speciality,
+        atention,
+        details,
+        name,
+        date,
+        timeRange,
+        professional,
+      } = action.payload;
 
       const updatedDates = state.dates.map((item) => {
         if (
@@ -114,6 +249,58 @@ function reductor(state, action) {
         }
         return item;
       });
+
+      const idTime = (speciality + professional + date)
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s/g, "")
+        .toUpperCase();
+
+      const isNewTime = state.time.some((item) => item.idTime === idTime);
+
+      const convertStringToObject = (timeRange) => {
+        const [startTime, endTime] = timeRange.split(" - ");
+        const startTimeObj = parseTimeString(startTime);
+        const endTimeObj = parseTimeString(endTime);
+        const timeObj = {};
+        let currentTime = startTimeObj;
+        while (currentTime <= endTimeObj) {
+          const formattedTime = formatTime(currentTime);
+          timeObj[formattedTime] = formattedTime;
+          currentTime = getNextHalfHour(currentTime);
+        }
+        return timeObj;
+      };
+
+      const parseTimeString = (timeRange) => {
+        const [time, period] = timeRange.split(" ");
+        const [hours, minutes] = time.split(":");
+        let parsedHours = parseInt(hours);
+        if (period === "PM" && parsedHours < 12) parsedHours += 12;
+        return { hours: parsedHours, minutes: parseInt(minutes) };
+      };
+
+      const formatTime = (timeObj) => {
+        const { hours, minutes } = timeObj;
+        const formattedHours = hours.toString().padStart(2, "0");
+        const formattedMinutes = minutes.toString().padStart(2, "0");
+        return `${formattedHours}:${formattedMinutes}`;
+      };
+
+      const getNextHalfHour = (timeObj) => {
+        const { hours, minutes } = timeObj;
+        let nextHours = hours;
+        let nextMinutes = minutes + 30;
+        if (nextMinutes >= 60) {
+          nextHours++;
+          nextMinutes -= 60;
+        }
+        return { hours: nextHours, minutes: nextMinutes };
+      };
+
+      const timeObj = convertStringToObject(timeRange);
+
+      console.log(timeObj);
 
       const newState = {
         ...state,
