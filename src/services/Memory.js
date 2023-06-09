@@ -59,6 +59,7 @@ function reductor(state, action) {
         });
 
         const newDate = {
+          ...timesObject,
           id,
           name,
           age,
@@ -91,6 +92,7 @@ function reductor(state, action) {
         };
 
         const newDate = {
+          ...timesObject,
           id,
           name,
           age,
@@ -168,6 +170,7 @@ function reductor(state, action) {
         });
 
         const newDate = {
+          ...timesObject,
           id,
           name,
           age,
@@ -197,6 +200,7 @@ function reductor(state, action) {
         };
 
         const newDate = {
+          ...timesObject,
           id,
           name,
           age,
@@ -256,51 +260,33 @@ function reductor(state, action) {
         .replace(/\s/g, "")
         .toUpperCase();
 
-      const isNewTime = state.time.some((item) => item.idTime === idTime);
+      const isNewTime = state.time.filter((item) => item.idTime === idTime);
+      const findDate = state.dates.filter(
+        (item) =>
+          item.id === id && item.timeRange === timeRange && item.date === date
+      );
 
-      const convertStringToObject = (timeRange) => {
-        const [startTime, endTime] = timeRange.split(" - ");
-        const startTimeObj = parseTimeString(startTime);
-        const endTimeObj = parseTimeString(endTime);
-        const timeObj = {};
-        let currentTime = startTimeObj;
-        while (currentTime <= endTimeObj) {
-          const formattedTime = formatTime(currentTime);
-          timeObj[formattedTime] = formattedTime;
-          currentTime = getNextHalfHour(currentTime);
+      const propiedadesNumericas = {};
+
+      for (const objeto of findDate) {
+        for (const clave in objeto) {
+          const valor = objeto[clave];
+          if (
+            typeof clave === "string" &&
+            (clave.includes("AM") || clave.includes("PM"))
+          ) {
+            propiedadesNumericas[clave] = valor;
+          }
         }
-        return timeObj;
-      };
+      }
 
-      const parseTimeString = (timeRange) => {
-        const [time, period] = timeRange.split(" ");
-        const [hours, minutes] = time.split(":");
-        let parsedHours = parseInt(hours);
-        if (period === "PM" && parsedHours < 12) parsedHours += 12;
-        return { hours: parsedHours, minutes: parseInt(minutes) };
-      };
-
-      const formatTime = (timeObj) => {
-        const { hours, minutes } = timeObj;
-        const formattedHours = hours.toString().padStart(2, "0");
-        const formattedMinutes = minutes.toString().padStart(2, "0");
-        return `${formattedHours}:${formattedMinutes}`;
-      };
-
-      const getNextHalfHour = (timeObj) => {
-        const { hours, minutes } = timeObj;
-        let nextHours = hours;
-        let nextMinutes = minutes + 30;
-        if (nextMinutes >= 60) {
-          nextHours++;
-          nextMinutes -= 60;
+      for (const objeto of isNewTime) {
+        for (const clave in objeto) {
+          if (propiedadesNumericas.hasOwnProperty(clave)) {
+            delete objeto[clave];
+          }
         }
-        return { hours: nextHours, minutes: nextMinutes };
-      };
-
-      const timeObj = convertStringToObject(timeRange);
-
-      console.log(timeObj);
+      }
 
       const newState = {
         ...state,
@@ -353,36 +339,119 @@ function reductor(state, action) {
         dateBefore,
         atentionBefore,
         detailsBefore,
+        times,
+        timesBeforeGot,
       } = action.payload;
 
-      const updatedDates = state.dates.map((item) => {
-        if (
-          item.id === id &&
-          item.speciality === specialityBefore &&
-          item.professional === professionalBefore &&
-          item.date === dateBefore &&
-          item.atention === atentionBefore &&
-          item.details === detailsBefore
-        ) {
-          return {
-            ...item,
-            speciality,
-            professional,
-            atention,
-            details,
-            date,
-          };
-        }
-        return item;
+      const firstTime = times[0];
+      const lastTime = times[times.length - 1];
+      const timeRange = `${firstTime} - ${lastTime}`.replace(/"/g, "");
+
+      const idTimeBefore = (specialityBefore + professionalBefore + dateBefore)
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s/g, "")
+        .toUpperCase();
+
+      const idTime = (speciality + professional + date)
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s/g, "")
+        .toUpperCase();
+
+      const timesBeforeObject = {};
+      timesBeforeGot.forEach((time) => {
+        timesBeforeObject[time] = time;
       });
 
-      const newState = {
-        ...state,
-        dates: updatedDates,
-      };
-      console.log(newState);
-      localStorage.setItem("consultory", JSON.stringify(newState));
-      return newState;
+      const timesObject = {};
+      times.forEach((time) => {
+        timesObject[time] = time;
+      });
+
+      if (idTime === idTimeBefore) {
+        const updatedOldTime = state.time.map((item) => {
+          if (item.idTime === idTimeBefore) {
+            const filteredItem = Object.keys(item)
+              .filter((key) => !timesBeforeObject.hasOwnProperty(key))
+              .reduce((obj, key) => {
+                obj[key] = item[key];
+                return {
+                  ...obj,
+                  ...timesObject,
+                };
+              }, {});
+            return {
+              ...filteredItem,
+            };
+          }
+          return item;
+        });
+
+        const updatedDates = state.dates.map((item) => {
+          if (
+            item.id === id &&
+            item.speciality === specialityBefore &&
+            item.professional === professionalBefore &&
+            item.date === dateBefore &&
+            item.atention === atentionBefore &&
+            item.details === detailsBefore
+          ) {
+            const filteredItem = Object.keys(item)
+              .filter((key) => !timesBeforeObject.hasOwnProperty(key))
+              .reduce((obj, key) => {
+                obj[key] = item[key];
+                return obj;
+              }, {});
+            return {
+              ...filteredItem,
+              speciality,
+              professional,
+              atention,
+              details,
+              date,
+              ...timesObject,
+              timeRange,
+            };
+          }
+          return item;
+        });
+
+        const newState = {
+          ...state,
+          dates: updatedDates,
+          time: updatedOldTime,
+        };
+        console.log(newState);
+        localStorage.setItem("consultory", JSON.stringify(newState));
+        return newState;
+      } else {
+        // SOLO FALTA EL ELSE, EN EL QUE idTime e idTimeBefore son otros. Tengo que ingresar idTimeBefore y borrar todos los datos respecto a ese y en crear uno nuevo o analizar si es que existe uno igual o parecido también para añadirme a ese otro existente o crear uno completamente nuevo desde cero.
+        // else if (item.idTime === idTimeBefore) {
+        //   const filteredItem = Object.keys(item)
+        //   .filter((key) => !timesBeforeObject.hasOwnProperty(key))
+        //   .reduce((obj, key) => {
+        //     obj[key] = item[key];
+        //     return obj;
+        //   }, {});
+        // return {
+        //   ...filteredItem,
+        // };
+        // }
+        // const newTime = state.time.map((item) => {
+        //   if (item.idTime === idTimeBefore) {
+        //     return {
+        //       ...item,
+        //       ...timesObject,
+        //     };
+        //   } else {
+        //     return {
+        //       ...timesObject,
+        //       idTime,
+        //     };
+        //   }
+        // });
+      }
     }
     case "uploadRecipe": {
       const {
