@@ -197,8 +197,9 @@ function Update() {
           <div className="flex items-center my-1 justify-between">
             <h4 className={styles.h4}>ESPECIALIDAD</h4>
             <select
+              disabled={true}
               required
-              className={styles.input}
+              className={styles.inputblock}
               value={form.speciality}
               onChange={(e) => onChange(e, "speciality")}
             >

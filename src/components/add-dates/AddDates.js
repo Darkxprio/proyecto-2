@@ -138,11 +138,71 @@ function AddDates() {
     }
   };
 
+  const [idTime, setIdTime] = useState("");
+  const [timer, setTimer] = useState([]);
+
   useEffect(() => {
+    const timerDefault = [
+      "",
+      "08:00 AM",
+      "08:30 AM",
+      "09:00 AM",
+      "09:30 AM",
+      "10:00 AM",
+      "10:30 AM",
+      "11:00 AM",
+      "11:30 AM",
+      "12:00 PM",
+      "12:30 PM",
+      "1:00 PM",
+      "1:30 PM",
+      "2:00 PM",
+      "2:30 PM",
+      "3:00 PM",
+      "3:30 PM",
+      "4:00 PM",
+      "4:30 PM",
+      "5:00 PM",
+      "5:30 PM",
+      "6:00 PM",
+      "6:30 PM",
+      "7:00 PM",
+      "7:30 PM",
+      "8:00 PM",
+      "8:30 PM",
+      "9:00 PM",
+    ];
+
+    if (form.speciality !== "" && form.professional !== "") {
+      setIdTime(
+        (form.speciality + form.professional + form.date)
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/\s/g, "")
+          .toUpperCase()
+      );
+    }
+
+    const filterId = state.time.filter((item) => item.idTime === idTime);
+
+    if (filterId.length === 0) {
+      setTimer(timerDefault);
+    } else {
+      const valuesToRemove = timerDefault.filter((value) =>
+        Object.values(filterId[0]).includes(value)
+      );
+
+      const filteredArr = timerDefault.filter(
+        (value) => !valuesToRemove.includes(value)
+      );
+
+      setTimer(filteredArr);
+    }
+
     setNameCatch("");
     setAgeCatch("");
     setPhoneCatch("");
-  }, [form.speciality]);
+  }, [form.speciality, form.professional, form.date, idTime, state.time]);
 
   const {
     speciality,
@@ -173,39 +233,9 @@ function AddDates() {
     }
   };
 
-  const [times, setTimes] = useState({});
+  const [times, setTimes] = useState([]);
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const timer = [
-    "",
-    "08:00 AM",
-    "08:30 AM",
-    "09:00 AM",
-    "09:30 AM",
-    "10:00 AM",
-    "10:30 AM",
-    "11:00 AM",
-    "11:30 AM",
-    "12:00 PM",
-    "12:30 PM",
-    "1:00 PM",
-    "1:30 PM",
-    "2:00 PM",
-    "2:30 PM",
-    "3:00 PM",
-    "3:30 PM",
-    "4:00 PM",
-    "4:30 PM",
-    "5:00 PM",
-    "5:30 PM",
-    "6:00 PM",
-    "6:30 PM",
-    "7:00 PM",
-    "7:30 PM",
-    "8:00 PM",
-    "8:30 PM",
-    "9:00 PM",
-  ];
 
   const handleTime = (e) => {
     const startTimeIndex = parseInt(startTime);
