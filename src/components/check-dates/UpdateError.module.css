@@ -1,7 +1,0 @@
-.container {
-    @apply rounded-lg p-3 text-gray-700 text-xs mx-4 nm-flat-white overflow-hidden;
-}
-
-.button {
-    @apply text-sm font-bold py-1 px-2 rounded-full hover:bg-gray-300 nm-flat-gray-200;
-}

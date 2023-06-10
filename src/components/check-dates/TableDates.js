@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styles from "./TableDates.module.css";
-import Url2 from "../Url2";
 import { useContext } from "react";
 import { Context } from "../../services/Memory";
 
@@ -115,15 +114,6 @@ function TableDates({ data, updateSearchResults }) {
                 <td className={`${styles.row} text-center`}>{item.age}</td>
                 <td className={styles.row}>{item.available}</td>
                 <td className={`${styles.row} text-center`}>
-                  <Url2
-                    to={`/check-dates/${item.id}/${item.details}/${item.atention}`}
-                  >
-                    <button>
-                      <i
-                        className={`${styles.buttonedit} fa-regular fa-pen-to-square`}
-                      ></i>
-                    </button>
-                  </Url2>
                   <button
                     onClick={(e) => {
                       handleComplete(

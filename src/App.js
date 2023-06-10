@@ -7,7 +7,6 @@ import AddDates from "./components/add-dates/AddDates";
 import Patient from "./components/patients/Patient";
 import CheckDates from "./components/check-dates/CheckDates";
 import Principal from "./components/Principal";
-import Update from "./components/check-dates/Update";
 import Modal from "./components/Modal";
 import AddHistory from "./components/patients/AddHistory";
 
@@ -24,10 +23,6 @@ function App() {
           element={<Modal children={<AddHistory />} />}
         />
         <Route path="/check-dates/*" element={<CheckDates />} />
-        <Route
-          path="/check-dates/:id/:details/:atention/*"
-          element={<Modal children={<Update />} />}
-        />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
