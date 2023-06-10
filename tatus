@@ -1,0 +1,83 @@
+[33mcommit b21e3b54b93378572e49f9c008f491b754d1d729[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Jordano Cuadros <thegary9647@gmail.com>
+Date:   Sat Jun 10 13:16:22 2023 -0500
+
+    Revisando errores en la APP
+
+[33mcommit bc61933d69bed2c94042ebd4c137bf86c8549a72[m
+Author: Jordano Cuadros <thegary9647@gmail.com>
+Date:   Fri Jun 9 17:37:31 2023 -0500
+
+    Realizado todo, solo falta añadir al Update el useEffect de las fechas y es todo
+
+[33mcommit 667e4c238d3650b1a5249a113f61149ea27203ec[m
+Author: Jordano Cuadros <thegary9647@gmail.com>
+Date:   Thu Jun 8 22:56:59 2023 -0500
+
+    Funcionalidad a mitad en update, seguimos avanzando
+
+[33mcommit 548d4163a4e908f6b66b1a1617651478c77f55e1[m
+Author: Jordano Cuadros <thegary9647@gmail.com>
+Date:   Tue Jun 6 22:44:33 2023 -0500
+
+    Faltan últimas funciones
+
+[33mcommit 16db4fbc0f907616d07a5d2d07d6b06968f0ed51[m
+Author: Jordano Cuadros <thegary9647@gmail.com>
+Date:   Sun Jun 4 19:12:27 2023 -0500
+
+    Solo falta implementar el horario
+
+[33mcommit e824951e875f9b8da333d0a05e502d59fafe4b74[m
+Author: Jordano Cuadros <thegary9647@gmail.com>
+Date:   Fri Jun 2 01:05:55 2023 -0500
+
+    Falta terminar la funcionalidad de la tabla de los pacientes y el tratamiento
+
+[33mcommit f286d0ef0a4ea477fcf27643d406982e81105702[m
+Author: Jordano Cuadros <thegary9647@gmail.com>
+Date:   Sat May 27 21:16:36 2023 -0500
+
+    Ajuste de archivos para una mejor lectura de todo
+
+[33mcommit 10d54dddf09a953bd28d05681e57c416dc93e440[m
+Author: Jordano Cuadros <thegary9647@gmail.com>
+Date:   Fri May 26 22:54:44 2023 -0500
+
+    Avanzando tablas
+
+[33mcommit 7f9364048d63aea58b03ffa5429641f8602e5d33[m
+Author: Jordano Cuadros <thegary9647@gmail.com>
+Date:   Thu May 25 23:29:07 2023 -0500
+
+    Empezando con la última parte, Patient
+
+[33mcommit 3ff94fa148dc65cdc5669d69110b77cf50206540[m
+Author: Jordano Cuadros <thegary9647@gmail.com>
+Date:   Wed May 24 22:15:11 2023 -0500
+
+    AddDates, terinado al 100, TableDates, falta ACTUALIZAR
+
+[33mcommit ebfd7f763cb8ca731ac4cab2373242a36bbfd2e9[m
+Author: Jordano Cuadros <thegary9647@gmail.com>
+Date:   Tue May 23 23:13:22 2023 -0500
+
+    Add Dates y funcionalidad, terminada
+
+[33mcommit c75f1ee3a6be9d0c8d7572b22bc247170013ff6f[m
+Author: Jordano Cuadros <thegary9647@gmail.com>
+Date:   Mon May 22 00:15:51 2023 -0500
+
+    Casi todo el AddDates, completado.
+
+[33mcommit 4cd1fe9e90a2b1002505189af498d1b7e7356453[m
+Author: Jordano Cuadros <thegary9647@gmail.com>
+Date:   Sun May 21 10:57:48 2023 -0500
+
+    Login creado, en desarrollo del Main
+
+[33mcommit 74fa909519883659d7553bfe6ac4589fcb43427d[m
+Author: Jordano Cuadros <thegary9647@gmail.com>
+Date:   Sat May 20 09:32:55 2023 -0500
+
+    Initialize project using Create React App
