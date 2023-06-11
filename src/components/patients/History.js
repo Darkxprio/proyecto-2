@@ -10,7 +10,12 @@ function History({ dataInfo, dataHistory }) {
   const renderContent = () => {
     switch (activeTab) {
       case "clinicStory":
-        if (dataInfo[0].speciality === undefined) {
+        if (
+          !dataInfo ||
+          !dataHistory ||
+          dataInfo[0]?.speciality === undefined ||
+          dataHistory[0]?.speciality === undefined
+        ) {
           return null;
         } else if (dataInfo[0].speciality === "Odontología") {
           return <ClinicHistoryOdontology data={dataInfo} />;
@@ -23,6 +28,9 @@ function History({ dataInfo, dataHistory }) {
         return <HistoryAndForward data={dataHistory} />;
     }
   };
+
+  console.log("dataInfo " + dataInfo);
+  console.log("dataHistory " + dataHistory);
 
   return (
     <div className={styles.container}>
